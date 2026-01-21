@@ -117,12 +117,12 @@ export default function DashboardPage() {
                         <div className="flex items-center gap-5">
                             <div className="avatar-ring">
                                 <div className="w-20 h-20 rounded-full bg-gradient-to-br from-[#ff3d3d] to-[#ff7b00] flex items-center justify-center text-3xl font-black text-white">
-                                    {(user?.full_name || 'P').charAt(0)}
+                                    {(user?.display_name || user?.first_name || 'P').charAt(0)}
                                 </div>
                             </div>
                             <div>
                                 <h1 className="text-2xl lg:text-3xl font-black text-white">
-                                    Welcome back, <span className="glow-text-orange">{user?.full_name || 'Player'}</span>!
+                                    Welcome back, <span className="glow-text-orange">{user?.display_name || user?.first_name || 'Player'}</span>!
                                 </h1>
                                 <div className="flex items-center gap-3 mt-2">
                                     <span className="level-badge">
@@ -228,7 +228,7 @@ export default function DashboardPage() {
                                 <Crown className="w-5 h-5 text-yellow-400" />
                                 Leaderboard
                             </h2>
-                            <Link href="#" className="text-sm text-[#ff7b00] hover:underline flex items-center gap-1">
+                            <Link href="/leaderboard" className="text-sm text-[#ff7b00] hover:underline flex items-center gap-1">
                                 View All <ChevronRight className="w-4 h-4" />
                             </Link>
                         </div>

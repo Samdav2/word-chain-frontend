@@ -4,11 +4,17 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 import api from '@/services/api';
 import { useRouter } from 'next/navigation';
 
-interface User {
+export interface User {
     id: string;
     email: string;
-    full_name: string;
+    first_name: string;
+    last_name: string;
+    display_name: string;
+    matric_no?: string;
     role: string;
+    current_xp: number;
+    preferred_difficulty: string;
+    created_at?: string;
 }
 
 interface AuthContextType {
@@ -17,6 +23,7 @@ interface AuthContextType {
     logout: () => void;
     isAuthenticated: boolean;
     loading: boolean;
+    updateUser: (userData: Partial<User>) => void;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -51,8 +58,16 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         router.push('/login');
     };
 
+    const updateUser = (userData: Partial<User>) => {
+        if (user) {
+            const updatedUser = { ...user, ...userData };
+            localStorage.setItem('user', JSON.stringify(updatedUser));
+            setUser(updatedUser);
+        }
+    };
+
     return (
-        <AuthContext.Provider value={{ user, login, logout, isAuthenticated: !!user, loading }}>
+        <AuthContext.Provider value={{ user, login, logout, isAuthenticated: !!user, loading, updateUser }}>
             {children}
         </AuthContext.Provider>
     );
@@ -67,7 +82,8 @@ export const useAuth = () => {
             login: () => { },
             logout: () => { },
             isAuthenticated: false,
-            loading: true
+            loading: true,
+            updateUser: () => { }
         };
     }
     return context;
