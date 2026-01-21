@@ -21,7 +21,7 @@ export default function HomePage() {
             <span className="text-xl font-black text-white">WordChain<span className="text-[#ff7b00]">Pro</span></span>
           </div>
           <div className="flex items-center gap-4">
-            <Link href="/login" className="text-white hover:text-[#ff7b00] transition-colors font-medium">
+            <Link href="/login" className="text-[#ff7b00] hover:text-[#ff9500] transition-colors font-medium">
               Login
             </Link>
             <Link href="/signup">
@@ -63,18 +63,18 @@ export default function HomePage() {
                 Build chains, earn XP, and climb the leaderboard!
               </p>
 
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <Link href="/signup">
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto">
+                <Link href="/signup" className="w-full sm:w-auto">
                   <motion.button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className="gamer-btn-primary pulse-glow flex items-center gap-3 text-lg px-8 py-4"
+                    className="gamer-btn-primary pulse-glow flex items-center justify-center gap-3 text-lg px-8 py-4 w-full sm:w-auto"
                   >
                     <Play className="w-6 h-6" fill="white" />
                     START PLAYING FREE
                   </motion.button>
                 </Link>
-                <Link href="/login" className="text-white hover:text-[#ff7b00] transition-colors flex items-center gap-2">
+                <Link href="/login" className="text-white hover:text-[#ff7b00] transition-colors flex items-center gap-2 w-full sm:w-auto justify-center">
                   Already have an account? <ChevronRight className="w-4 h-4" />
                 </Link>
               </div>
@@ -99,8 +99,8 @@ export default function HomePage() {
                       animate={{ scale: 1 }}
                       transition={{ delay: 0.5 + index * 0.1 }}
                       className={`px-6 py-3 rounded-full font-bold text-lg ${index === 0 ? 'bg-gradient-to-r from-[#ff3d3d] to-[#ff7b00] text-white' :
-                          index === 4 ? 'bg-green-500 text-white' :
-                            'bg-[#2a2a2a] text-white border border-[#3a3a3a]'
+                        index === 4 ? 'bg-green-500 text-white' :
+                          'bg-[#2a2a2a] text-white border border-[#3a3a3a]'
                         }`}
                     >
                       {word}
@@ -174,8 +174,8 @@ export default function HomePage() {
                 className="gamer-card hover:scale-105 transition-transform"
               >
                 <div className={`p-3 rounded-lg w-fit mb-4 ${feature.color === 'red'
-                    ? 'bg-[#ff3d3d]/10 text-[#ff3d3d]'
-                    : 'bg-[#ff7b00]/10 text-[#ff7b00]'
+                  ? 'bg-[#ff3d3d]/10 text-[#ff3d3d]'
+                  : 'bg-[#ff7b00]/10 text-[#ff7b00]'
                   }`}>
                   {feature.icon}
                 </div>

@@ -97,16 +97,16 @@ function LoginForm() {
     };
 
     return (
-        <div className="gamistic-theme gamistic-container min-h-screen flex relative">
+        <div className="gamistic-theme gamistic-container min-h-screen flex flex-col lg:flex-row relative">
             {/* Background Effects */}
             <div className="fixed inset-0 overflow-hidden pointer-events-none">
-                <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#ff3d3d]/10 rounded-full blur-3xl" />
-                <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#ff7b00]/10 rounded-full blur-3xl" />
+                <div className="absolute top-0 right-0 w-[300px] md:w-[500px] h-[300px] md:h-[500px] bg-[#ff3d3d]/10 rounded-full blur-3xl" />
+                <div className="absolute bottom-0 left-0 w-[300px] md:w-[500px] h-[300px] md:h-[500px] bg-[#ff7b00]/10 rounded-full blur-3xl" />
             </div>
             <FloatingParticles />
 
             {/* Left Side - Form */}
-            <div className="flex-1 flex items-center justify-center p-6 z-10">
+            <div className="flex-1 flex items-center justify-center p-4 sm:p-6 z-10 min-h-screen lg:min-h-0">
                 <motion.div
                     initial={{ opacity: 0, x: -30 }}
                     animate={{ opacity: 1, x: 0 }}
