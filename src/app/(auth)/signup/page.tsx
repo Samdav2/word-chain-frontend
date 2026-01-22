@@ -315,10 +315,10 @@ export default function SignupPage() {
                                     onClick={nextStep}
                                     whileHover={{ scale: 1.02 }}
                                     whileTap={{ scale: 0.98 }}
-                                    className="gamer-btn-primary w-full flex items-center justify-center gap-2"
+                                    className="gamer-btn-primary w-full flex items-center justify-center gap-2 py-2.5 sm:py-3 text-sm sm:text-base"
                                 >
                                     Continue
-                                    <ArrowRight className="w-5 h-5" />
+                                    <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
                                 </motion.button>
                             </motion.div>
                         )}
@@ -382,11 +382,11 @@ export default function SignupPage() {
                                     {errors.confirmPassword && <p className="text-xs text-[#ff3d3d] mt-1">{errors.confirmPassword}</p>}
                                 </div>
 
-                                <div className="flex gap-3">
+                                <div className="flex flex-col-reverse sm:flex-row gap-2 sm:gap-3">
                                     <button
                                         type="button"
                                         onClick={() => setStep(1)}
-                                        className="flex-1 py-3 px-4 bg-[#1a1a1a] border border-[#2a2a2a] text-white rounded-lg hover:bg-[#2a2a2a] transition-colors font-medium"
+                                        className="w-full sm:w-auto sm:flex-1 py-2.5 sm:py-3 px-4 bg-[#1a1a1a] border border-[#2a2a2a] text-white rounded-lg hover:bg-[#2a2a2a] transition-colors font-medium text-sm sm:text-base"
                                     >
                                         Back
                                     </button>
@@ -395,17 +395,18 @@ export default function SignupPage() {
                                         disabled={loading}
                                         whileHover={{ scale: 1.02 }}
                                         whileTap={{ scale: 0.98 }}
-                                        className="flex-[2] gamer-btn-primary flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                                        className="w-full sm:w-auto sm:flex-[2] gamer-btn-primary flex items-center justify-center gap-2 py-2.5 sm:py-3 text-sm sm:text-base disabled:opacity-50 disabled:cursor-not-allowed"
                                     >
                                         {loading ? (
                                             <>
-                                                <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                                                Creating...
+                                                <div className="w-4 h-4 sm:w-5 sm:h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                                                <span className="hidden xs:inline">Creating...</span>
+                                                <span className="xs:hidden">...</span>
                                             </>
                                         ) : (
                                             <>
-                                                Create Account
-                                                <ArrowRight className="w-5 h-5" />
+                                                <span>Create Account</span>
+                                                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
                                             </>
                                         )}
                                     </motion.button>
@@ -415,7 +416,7 @@ export default function SignupPage() {
                     </form>
 
                     <div className="mt-6 text-center">
-                        <p className="text-[#888888]">
+                        <p className="text-[#888888] whitespace-nowrap text-sm sm:text-base">
                             Already have an account?{' '}
                             <Link href="/login" className="text-[#ff7b00] hover:underline font-medium">
                                 Sign in
