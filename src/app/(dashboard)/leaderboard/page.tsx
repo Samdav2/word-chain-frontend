@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import dynamic from 'next/dynamic';
+
 import { motion, AnimatePresence } from 'framer-motion';
 import {
     Trophy, Crown, Medal, ChevronUp, ChevronDown,
@@ -15,8 +15,8 @@ import { Skeleton, SkeletonUserRankHero, SkeletonPodium, SkeletonLeaderboardRow 
 import Link from 'next/link';
 
 // Force dynamic rendering - this page uses React Query hooks that need client-side data
-export const runtime = 'edge';
-export const dynamic_config = 'force-dynamic';
+// Force dynamic rendering - this page uses React Query hooks that need client-side data
+export const dynamic = 'force-dynamic';
 
 // Tier color mapping
 const TIER_COLORS: Record<string, { bg: string; border: string; text: string; glow: string }> = {
