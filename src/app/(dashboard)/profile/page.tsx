@@ -113,9 +113,11 @@ export default function ProfilePage() {
                                     {profile?.avatar_url ? (
                                         <img src={profile.avatar_url} alt="Profile" className="w-full h-full object-cover" />
                                     ) : (
-                                        <span className="text-4xl font-bold text-white">
-                                            {profile?.full_name?.charAt(0).toUpperCase()}
-                                        </span>
+                                        <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-[#2a2a2a] to-[#1a1a1a]">
+                                            <svg className="w-16 h-16 text-[#555555]" fill="currentColor" viewBox="0 0 24 24">
+                                                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+                                            </svg>
+                                        </div>
                                     )}
                                 </div>
                             </div>
@@ -269,18 +271,18 @@ export default function ProfilePage() {
                                             <TrendingUp className="w-5 h-5 text-green-500" />
                                             Performance
                                         </h3>
-                                        <div className="grid grid-cols-3 gap-4 text-center">
+                                        <div className="grid grid-cols-3 gap-2 sm:gap-4 text-center">
                                             <div>
-                                                <div className="text-2xl font-bold text-white">{profile?.games_won || 0}</div>
-                                                <div className="text-xs text-[#888888] uppercase mt-1">Wins</div>
+                                                <div className="text-lg sm:text-2xl font-bold text-white">{profile?.games_won || 0}</div>
+                                                <div className="text-[10px] sm:text-xs text-[#888888] uppercase mt-1">Wins</div>
                                             </div>
                                             <div>
-                                                <div className="text-2xl font-bold text-white">{profile?.win_rate || 0}%</div>
-                                                <div className="text-xs text-[#888888] uppercase mt-1">Win Rate</div>
+                                                <div className="text-lg sm:text-2xl font-bold text-white">{(profile?.win_rate || 0).toFixed(2)}%</div>
+                                                <div className="text-[10px] sm:text-xs text-[#888888] uppercase mt-1">Win Rate</div>
                                             </div>
                                             <div>
-                                                <div className="text-2xl font-bold text-white">{profile?.total_moves || 0}</div>
-                                                <div className="text-xs text-[#888888] uppercase mt-1">Total Moves</div>
+                                                <div className="text-lg sm:text-2xl font-bold text-white">{profile?.total_moves || 0}</div>
+                                                <div className="text-[10px] sm:text-xs text-[#888888] uppercase mt-1">Total Moves</div>
                                             </div>
                                         </div>
                                     </div>

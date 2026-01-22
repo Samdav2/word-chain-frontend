@@ -1,9 +1,9 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { Zap, LayoutDashboard, BarChart3, Trophy, Gamepad2, LogOut } from 'lucide-react';
+import { usePathname, useRouter } from 'next/navigation';
+import { Zap, LayoutDashboard, BarChart3, Trophy, Gamepad2, LogOut, Loader2 } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 
 export default function DashboardLayout({
@@ -12,7 +12,26 @@ export default function DashboardLayout({
     children: React.ReactNode;
 }) {
     const pathname = usePathname();
-    const { user, logout } = useAuth();
+    const router = useRouter();
+    const { user, logout, loading } = useAuth();
+
+    useEffect(() => {
+        if (!loading && !user) {
+            router.push('/login');
+        }
+    }, [user, loading, router]);
+
+    if (loading) {
+        return (
+            <div className="min-h-screen bg-[#0a0a0a] flex items-center justify-center">
+                <Loader2 className="w-8 h-8 text-[#ff7b00] animate-spin" />
+            </div>
+        );
+    }
+
+    if (!user) {
+        return null; // Don't render anything while redirecting
+    }
 
     const navLinks = [
         { href: '/dashboard', label: 'Home', icon: LayoutDashboard },

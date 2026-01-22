@@ -102,7 +102,7 @@ export default function HowToPlayPage() {
     const [expandedFeature, setExpandedFeature] = useState<number | null>(null);
 
     return (
-        <div className="min-h-screen pb-12">
+        <div className="min-h-screen pb-12 px-4 sm:px-6">
             {/* Hero Section */}
             <motion.div
                 initial={{ opacity: 0, y: -20 }}

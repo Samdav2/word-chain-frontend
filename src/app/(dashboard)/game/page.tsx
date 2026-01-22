@@ -371,13 +371,6 @@ export default function GameArenaPage() {
                             {loading ? 'Starting...' : 'START GAME'}
                         </button>
 
-                        {/* How to Play Link */}
-                        <Link href="/how-to-play" className="block text-center">
-                            <span className="inline-flex items-center gap-2 text-[#888888] hover:text-[#ff7b00] text-sm transition-colors">
-                                <BookOpen className="w-4 h-4" />
-                                New here? Learn how to play →
-                            </span>
-                        </Link>
                     </motion.div>
                 )}
 
@@ -742,12 +735,13 @@ export default function GameArenaPage() {
                 <motion.button
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
-                    className="fixed bottom-4 right-4 sm:bottom-8 sm:right-8 z-50 w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-gradient-to-br from-[#ff3d3d] to-[#ff7b00] flex items-center justify-center shadow-lg shadow-orange-500/30 border-2 border-white/20"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="fixed bottom-24 right-4 sm:bottom-28 sm:right-6 z-40 flex items-center gap-2 px-4 py-2.5 sm:px-5 sm:py-3 rounded-full bg-gradient-to-br from-[#ff3d3d] to-[#ff7b00] shadow-lg shadow-orange-500/30 border-2 border-white/20"
                     title="How to Play"
                 >
-                    <BookOpen className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
+                    <BookOpen className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+                    <span className="text-white font-bold text-sm sm:text-base">How to Play</span>
                 </motion.button>
             </Link>
         </div>
