@@ -79,7 +79,16 @@ function LoginForm() {
             if (response.data.access_token) {
                 localStorage.setItem('token', response.data.access_token);
                 const userResponse = await api.get('/users/me');
-                login(response.data.access_token, userResponse.data);
+
+                // Merge user data with first_name from login response
+                const userData = {
+                    ...userResponse.data,
+                    first_name: response.data.first_name || userResponse.data.first_name || userResponse.data.full_name?.split(' ')[0] || 'User',
+                    last_name: userResponse.data.last_name || '',
+                    display_name: userResponse.data.full_name || response.data.first_name || 'User'
+                };
+
+                login(response.data.access_token, userData);
             }
         } catch (error: any) {
             console.error('Login error:', error);

@@ -103,57 +103,65 @@ export default function DashboardPage() {
     }
 
     return (
-        <div className="gamistic-theme gamistic-container min-h-screen p-6">
-            <div className="max-w-7xl mx-auto space-y-8">
+        <div className="gamistic-theme gamistic-container min-h-screen p-3 sm:p-6">
+            <div className="max-w-7xl mx-auto space-y-4 sm:space-y-8">
 
                 {/* Hero Section */}
                 <motion.div
                     initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="gamer-card relative overflow-visible"
+                    className="gamer-card relative overflow-visible p-4 sm:p-6"
                 >
-                    <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
-                        {/* Player Info */}
-                        <div className="flex items-center gap-5">
-                            <div className="avatar-ring">
-                                <div className="w-20 h-20 rounded-full bg-gradient-to-br from-[#ff3d3d] to-[#ff7b00] flex items-center justify-center text-3xl font-black text-white">
-                                    {(user?.display_name || user?.first_name || 'P').charAt(0)}
+                    <div className="flex flex-col gap-4 sm:gap-6">
+                        {/* Top Row: Avatar + Info + Button */}
+                        <div className="flex items-center justify-between gap-3 sm:gap-5">
+                            {/* Player Info */}
+                            <div className="flex items-center gap-3 sm:gap-5 min-w-0 flex-1">
+                                <div className="avatar-ring flex-shrink-0">
+                                    <div className="w-12 h-12 sm:w-16 md:w-20 sm:h-16 md:h-20 rounded-full bg-gradient-to-br from-[#ff3d3d] to-[#ff7b00] flex items-center justify-center text-xl sm:text-2xl md:text-3xl font-black text-white">
+                                        {(user?.first_name || user?.display_name || 'P').charAt(0)}
+                                    </div>
+                                </div>
+                                <div className="min-w-0 flex-1">
+                                    <h1 className="text-base sm:text-xl md:text-2xl lg:text-3xl font-black text-white leading-tight">
+                                        <span className="hidden sm:inline">Welcome back, </span>
+                                        <span className="text-white sm:glow-text-orange truncate block sm:inline">
+                                            {user?.first_name || user?.display_name || 'Player'}
+                                        </span>
+                                        <span className="hidden sm:inline">!</span>
+                                    </h1>
+                                    <div className="flex items-center gap-2 sm:gap-3 mt-1 sm:mt-2 flex-wrap">
+                                        <span className="level-badge text-[10px] sm:text-xs py-1 px-2 sm:py-1.5 sm:px-3">
+                                            <Crown className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
+                                            Lvl {dashboardStats?.level || 1}
+                                        </span>
+                                        <span className="text-[#888888] text-[10px] sm:text-sm hidden sm:inline">Word Chain Champion</span>
+                                    </div>
                                 </div>
                             </div>
-                            <div>
-                                <h1 className="text-2xl lg:text-3xl font-black text-white">
-                                    Welcome back, <span className="glow-text-orange">{user?.display_name || user?.first_name || 'Player'}</span>!
-                                </h1>
-                                <div className="flex items-center gap-3 mt-2">
-                                    <span className="level-badge">
-                                        <Crown className="w-3 h-3" />
-                                        Level {dashboardStats?.level || 1}
-                                    </span>
-                                    <span className="text-[#888888] text-sm">Word Chain Champion</span>
-                                </div>
-                            </div>
+
+                            {/* Play Now Button */}
+                            <Link href="/game" className="flex-shrink-0">
+                                <motion.button
+                                    whileHover={{ scale: 1.05 }}
+                                    whileTap={{ scale: 0.95 }}
+                                    className="bg-gradient-to-r from-[#ff3d3d] to-[#ff7b00] text-white font-bold rounded-lg shadow-lg flex items-center gap-1.5 sm:gap-3 text-xs sm:text-sm py-2 px-3 sm:py-3 sm:px-5"
+                                >
+                                    <Play className="w-4 h-4 sm:w-5 sm:h-5" fill="white" />
+                                    <span className="hidden sm:inline">PLAY NOW</span>
+                                    <span className="sm:hidden">PLAY</span>
+                                </motion.button>
+                            </Link>
                         </div>
 
-                        {/* Play Now Button */}
-                        <Link href="/game">
-                            <motion.button
-                                whileHover={{ scale: 1.05 }}
-                                whileTap={{ scale: 0.95 }}
-                                className="gamer-btn-primary pulse-glow flex items-center gap-3"
-                            >
-                                <Play className="w-5 h-5" fill="white" />
-                                PLAY NOW
-                            </motion.button>
-                        </Link>
-                    </div>
-
-                    {/* XP Progress */}
-                    <div className="mt-6">
-                        <XPProgressBar
-                            currentXP={dashboardStats?.current_xp || 0}
-                            maxXP={dashboardStats?.xp_to_next_level || 1000}
-                            level={dashboardStats?.level || 1}
-                        />
+                        {/* XP Progress */}
+                        <div>
+                            <XPProgressBar
+                                currentXP={dashboardStats?.current_xp || 0}
+                                maxXP={dashboardStats?.xp_to_next_level || 1000}
+                                level={dashboardStats?.level || 1}
+                            />
+                        </div>
                     </div>
                 </motion.div>
 
@@ -333,8 +341,8 @@ export default function DashboardPage() {
                 {/* Quick Actions */}
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                     {[
-                        { icon: <Trophy className="w-6 h-6" />, label: 'Achievements', color: 'orange', href: '#' },
-                        { icon: <Award className="w-6 h-6" />, label: 'Rewards', color: 'red', href: '#' },
+                        { icon: <Trophy className="w-6 h-6" />, label: 'Achievements', color: 'orange', href: '/achievements' },
+                        { icon: <Award className="w-6 h-6" />, label: 'Rewards', color: 'red', href: '/achievements?tab=daily' },
                         { icon: <Target className="w-6 h-6" />, label: 'Practice', color: 'white', href: '/game' },
                         { icon: <TrendingUp className="w-6 h-6" />, label: 'Analytics', color: 'orange', href: '/analytics' },
                     ].map((action, index) => (

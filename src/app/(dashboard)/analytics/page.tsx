@@ -140,7 +140,7 @@ export default function AnalyticsPage() {
                             <Zap className="w-5 h-5 text-[#ff7b00]" />
                             <span className="text-sm text-[#888888]">Total XP</span>
                         </div>
-                        <p className="text-3xl font-black glow-text-orange">{stats?.total_xp?.toLocaleString()}</p>
+                        <p className="text-2xl sm:text-3xl font-black glow-text-orange">{stats?.total_xp?.toLocaleString()}</p>
                     </motion.div>
 
                     <motion.div
@@ -153,7 +153,7 @@ export default function AnalyticsPage() {
                             <Trophy className="w-5 h-5 text-[#ff3d3d]" />
                             <span className="text-sm text-[#888888]">Win Rate</span>
                         </div>
-                        <p className="text-3xl font-black text-white">{stats?.win_rate?.toFixed(1)}%</p>
+                        <p className="text-2xl sm:text-3xl font-black text-white">{stats?.win_rate?.toFixed(1)}%</p>
                     </motion.div>
 
                     <motion.div
@@ -166,7 +166,7 @@ export default function AnalyticsPage() {
                             <Target className="w-5 h-5 text-green-500" />
                             <span className="text-sm text-[#888888]">Games Played</span>
                         </div>
-                        <p className="text-3xl font-black text-white">{stats?.total_games}</p>
+                        <p className="text-2xl sm:text-3xl font-black text-white">{stats?.total_games}</p>
                         <p className="text-xs text-green-500">{stats?.games_won} won</p>
                     </motion.div>
 
@@ -180,7 +180,7 @@ export default function AnalyticsPage() {
                             <Clock className="w-5 h-5 text-blue-400" />
                             <span className="text-sm text-[#888888]">Avg. Think Time</span>
                         </div>
-                        <p className="text-3xl font-black text-white">
+                        <p className="text-2xl sm:text-3xl font-black text-white">
                             {((stats?.time_metrics?.average_thinking_time_ms || 0) / 1000).toFixed(1)}s
                         </p>
                     </motion.div>
@@ -309,7 +309,7 @@ export default function AnalyticsPage() {
                             <tbody className="divide-y divide-[#1a1a1a]">
                                 {gameHistory.map((game, index) => (
                                     <tr key={game.id} className="hover:bg-[#1a1a1a] transition-colors">
-                                        <td className="px-4 py-3 text-[#888888]">
+                                        <td className="px-4 py-3 text-[#888888] text-xs sm:text-sm whitespace-nowrap">
                                             {formatDate(game.start_time)}
                                         </td>
                                         <td className="px-4 py-3">

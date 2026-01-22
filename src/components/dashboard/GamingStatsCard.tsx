@@ -48,7 +48,7 @@ export default function GamingStatsCard({
                     <p className="text-sm font-medium text-[#888888] uppercase tracking-wider">
                         {title}
                     </p>
-                    <h3 className="text-3xl font-black text-white mt-2 tracking-tight">
+                    <h3 className="text-2xl sm:text-3xl font-black text-white mt-2 tracking-tight">
                         {value}
                     </h3>
                 </div>

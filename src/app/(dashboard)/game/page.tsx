@@ -260,7 +260,7 @@ export default function GameArenaPage() {
     const categoryConfig = CATEGORY_CONFIG[gameState.category];
 
     return (
-        <div className="gamistic-theme gamistic-container min-h-screen p-4 md:p-6 relative overflow-hidden">
+        <div className="gamistic-theme gamistic-container min-h-screen p-2 sm:p-4 md:p-6 relative overflow-hidden">
             {/* Floating Background Words */}
             <div className="fixed inset-0 overflow-hidden pointer-events-none">
                 {FLOATING_WORDS.map((word, i) => (
@@ -284,14 +284,14 @@ export default function GameArenaPage() {
 
             <div className="max-w-4xl mx-auto relative z-10">
                 {/* Header */}
-                <div className="flex items-center justify-between mb-6">
-                    <Link href="/dashboard" className="flex items-center gap-2 text-[#888888] hover:text-white transition-colors">
-                        <ArrowLeft className="w-5 h-5" />
-                        <span>Back</span>
+                <div className="flex items-center justify-between mb-3 sm:mb-6">
+                    <Link href="/dashboard" className="flex items-center gap-1 sm:gap-2 text-[#888888] hover:text-white transition-colors">
+                        <ArrowLeft className="w-4 h-4 sm:w-5 sm:h-5" />
+                        <span className="text-sm sm:text-base">Back</span>
                     </Link>
-                    <div className="flex items-center gap-2">
-                        <Zap className="w-5 h-5 text-[#ff7b00]" />
-                        <span className="font-bold text-white">WordChain<span className="text-[#ff7b00]">Pro</span></span>
+                    <div className="flex items-center gap-1.5 sm:gap-2">
+                        <Zap className="w-4 h-4 sm:w-5 sm:h-5 text-[#ff7b00]" />
+                        <span className="font-bold text-white text-sm sm:text-base">WordChain<span className="text-[#ff7b00]">Pro</span></span>
                     </div>
                 </div>
 
@@ -300,36 +300,36 @@ export default function GameArenaPage() {
                     <motion.div
                         initial={{ opacity: 0, scale: 0.95 }}
                         animate={{ opacity: 1, scale: 1 }}
-                        className="space-y-6"
+                        className="space-y-3 sm:space-y-6"
                     >
-                        <div className="gamer-card text-center py-8">
-                            <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-gradient-to-br from-[#ff3d3d] to-[#ff7b00] flex items-center justify-center">
-                                <Target className="w-10 h-10 text-white" />
+                        <div className="gamer-card text-center py-4 sm:py-8 p-3 sm:p-6">
+                            <div className="w-14 h-14 sm:w-20 sm:h-20 mx-auto mb-3 sm:mb-6 rounded-full bg-gradient-to-br from-[#ff3d3d] to-[#ff7b00] flex items-center justify-center">
+                                <Target className="w-7 h-7 sm:w-10 sm:h-10 text-white" />
                             </div>
-                            <h2 className="text-3xl font-bold text-white mb-2">New Game</h2>
-                            <p className="text-[#888888]">Choose your category and difficulty</p>
+                            <h2 className="text-xl sm:text-3xl font-bold text-white mb-1 sm:mb-2">New Game</h2>
+                            <p className="text-[#888888] text-sm sm:text-base">Choose your category and difficulty</p>
                         </div>
 
                         {/* Category Selection */}
-                        <div className="gamer-card">
-                            <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
-                                <BookOpen className="w-5 h-5 text-[#ff7b00]" />
+                        <div className="gamer-card p-3 sm:p-6">
+                            <h3 className="text-sm sm:text-lg font-bold text-white mb-3 sm:mb-4 flex items-center gap-2">
+                                <BookOpen className="w-4 h-4 sm:w-5 sm:h-5 text-[#ff7b00]" />
                                 Select Category
                             </h3>
-                            <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                            <div className="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-6 gap-2 sm:gap-3">
                                 {(Object.keys(CATEGORY_CONFIG) as GameCategory[]).map((cat) => {
                                     const config = CATEGORY_CONFIG[cat];
                                     return (
                                         <button
                                             key={cat}
                                             onClick={() => setSelectedCategory(cat)}
-                                            className={`p-4 rounded-lg border-2 transition-all flex flex-col items-center gap-2 ${selectedCategory === cat
+                                            className={`p-2 sm:p-4 rounded-lg border-2 transition-all flex flex-col items-center gap-1 sm:gap-2 ${selectedCategory === cat
                                                 ? 'border-[#ff7b00] bg-[#ff7b00]/10'
                                                 : 'border-[#2a2a2a] hover:border-[#3a3a3a] bg-[#1a1a1a]'
                                                 }`}
                                         >
-                                            <div style={{ color: config.color }}>{config.icon}</div>
-                                            <span className="text-white font-medium">{config.label}</span>
+                                            <div style={{ color: config.color }} className="[&>svg]:w-4 [&>svg]:h-4 sm:[&>svg]:w-5 sm:[&>svg]:h-5">{config.icon}</div>
+                                            <span className="text-white font-medium text-[10px] sm:text-sm">{config.label}</span>
                                         </button>
                                     );
                                 })}
@@ -337,17 +337,17 @@ export default function GameArenaPage() {
                         </div>
 
                         {/* Difficulty Selection */}
-                        <div className="gamer-card">
-                            <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
-                                <Flame className="w-5 h-5 text-[#ff3d3d]" />
-                                Select Difficulty
+                        <div className="gamer-card p-3 sm:p-6">
+                            <h3 className="text-sm sm:text-lg font-bold text-white mb-3 sm:mb-4 flex items-center gap-2">
+                                <Flame className="w-4 h-4 sm:w-5 sm:h-5 text-[#ff3d3d]" />
+                                Difficulty
                             </h3>
-                            <div className="flex gap-3">
+                            <div className="flex gap-2 sm:gap-3">
                                 {([1, 2, 3, 4, 5] as DifficultyLevel[]).map((level) => (
                                     <button
                                         key={level}
                                         onClick={() => setSelectedDifficulty(level)}
-                                        className={`flex-1 py-3 rounded-lg border-2 transition-all font-bold ${selectedDifficulty === level
+                                        className={`flex-1 py-2 sm:py-3 rounded-lg border-2 transition-all font-bold text-sm sm:text-base ${selectedDifficulty === level
                                             ? 'border-[#ff7b00] bg-[#ff7b00]/10 text-[#ff7b00]'
                                             : 'border-[#2a2a2a] hover:border-[#3a3a3a] bg-[#1a1a1a] text-white'
                                             }`}
@@ -356,7 +356,7 @@ export default function GameArenaPage() {
                                     </button>
                                 ))}
                             </div>
-                            <p className="text-xs text-[#888888] mt-2 text-center">
+                            <p className="text-[10px] sm:text-xs text-[#888888] mt-2 text-center">
                                 1 = Easy • 5 = Expert
                             </p>
                         </div>
@@ -365,74 +365,85 @@ export default function GameArenaPage() {
                         <button
                             onClick={handleStartGame}
                             disabled={loading}
-                            className="gamer-btn-primary pulse-glow w-full flex items-center justify-center gap-3 text-lg py-4"
+                            className="bg-gradient-to-r from-[#ff3d3d] to-[#ff7b00] text-white font-bold rounded-lg shadow-lg w-full flex items-center justify-center gap-2 sm:gap-3 text-sm sm:text-lg py-3 sm:py-4"
                         >
-                            <Play className="w-6 h-6" fill="white" />
+                            <Play className="w-5 h-5 sm:w-6 sm:h-6" fill="white" />
                             {loading ? 'Starting...' : 'START GAME'}
                         </button>
+
+                        {/* How to Play Link */}
+                        <Link href="/how-to-play" className="block text-center">
+                            <span className="inline-flex items-center gap-2 text-[#888888] hover:text-[#ff7b00] text-sm transition-colors">
+                                <BookOpen className="w-4 h-4" />
+                                New here? Learn how to play →
+                            </span>
+                        </Link>
                     </motion.div>
                 )}
 
                 {/* Game Playing */}
                 {gameState.status === 'playing' && (
-                    <div className="space-y-6">
+                    <div className="space-y-3 sm:space-y-6">
                         {/* Target Display with Category Badge */}
-                        <div className="gamer-card p-6">
-                            <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-                                <div className="text-center md:text-left">
-                                    <div className="flex items-center gap-2 mb-2">
+                        <div className="gamer-card p-3 sm:p-6">
+                            <div className="flex flex-col gap-3 sm:gap-4">
+                                {/* Target words and badges */}
+                                <div className="flex items-center justify-between">
+                                    <div className="flex items-center gap-1.5 sm:gap-2">
                                         <span
-                                            className="px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1"
+                                            className="px-2 sm:px-3 py-0.5 sm:py-1 rounded-full text-[10px] sm:text-xs font-bold flex items-center gap-1 [&>svg]:w-3 [&>svg]:h-3 sm:[&>svg]:w-4 sm:[&>svg]:h-4"
                                             style={{ backgroundColor: `${categoryConfig.color}20`, color: categoryConfig.color }}
                                         >
                                             {categoryConfig.icon}
-                                            {categoryConfig.label}
+                                            <span className="hidden sm:inline">{categoryConfig.label}</span>
                                         </span>
-                                        <span className="px-2 py-1 rounded bg-[#2a2a2a] text-xs text-white">
+                                        <span className="px-1.5 sm:px-2 py-0.5 sm:py-1 rounded bg-[#2a2a2a] text-[10px] sm:text-xs text-white">
                                             Lvl {gameState.difficulty}
                                         </span>
                                     </div>
-                                    <div className="flex items-center gap-3">
-                                        <span className="text-2xl font-black text-[#ff3d3d]">{gameState.startWord}</span>
-                                        <ChevronRight className="w-6 h-6 text-[#888888]" />
-                                        <span className="text-2xl font-black text-green-500">{gameState.targetWord}</span>
-                                    </div>
-                                </div>
-                                <div className="flex items-center gap-6">
-                                    {/* Timer Display */}
-                                    <div className="text-center">
-                                        <p className="text-xs text-[#888888]">Time</p>
-                                        <div className={`text-2xl font-bold flex items-center gap-1 ${gameState.timeRemaining <= 30
-                                            ? 'text-[#ff3d3d] animate-pulse'
-                                            : gameState.timeRemaining <= 60
-                                                ? 'text-[#ff7b00]'
-                                                : 'text-white'
-                                            }`}>
-                                            <Timer className="w-5 h-5" />
-                                            {Math.floor(gameState.timeRemaining / 60)}:{(gameState.timeRemaining % 60).toString().padStart(2, '0')}
+                                    {/* Stats row for mobile */}
+                                    <div className="flex items-center gap-3 sm:gap-6">
+                                        {/* Timer Display */}
+                                        <div className="text-center">
+                                            <p className="text-[9px] sm:text-xs text-[#888888]">Time</p>
+                                            <div className={`text-sm sm:text-2xl font-bold flex items-center gap-0.5 sm:gap-1 ${gameState.timeRemaining <= 30
+                                                ? 'text-[#ff3d3d] animate-pulse'
+                                                : gameState.timeRemaining <= 60
+                                                    ? 'text-[#ff7b00]'
+                                                    : 'text-white'
+                                                }`}>
+                                                <Timer className="w-3 h-3 sm:w-5 sm:h-5" />
+                                                {Math.floor(gameState.timeRemaining / 60)}:{(gameState.timeRemaining % 60).toString().padStart(2, '0')}
+                                            </div>
+                                        </div>
+                                        <div className="text-center">
+                                            <p className="text-[9px] sm:text-xs text-[#888888]">Score</p>
+                                            <p className="text-sm sm:text-2xl font-bold glow-text-orange">{gameState.score}</p>
+                                        </div>
+                                        <div className="text-center">
+                                            <p className="text-[9px] sm:text-xs text-[#888888]">Moves</p>
+                                            <p className="text-sm sm:text-2xl font-bold text-white">{gameState.movesCount}</p>
                                         </div>
                                     </div>
-                                    <div className="text-center">
-                                        <p className="text-xs text-[#888888]">Score</p>
-                                        <p className="text-2xl font-bold glow-text-orange">{gameState.score}</p>
-                                    </div>
-                                    <div className="text-center">
-                                        <p className="text-xs text-[#888888]">Moves</p>
-                                        <p className="text-2xl font-bold text-white">{gameState.movesCount}</p>
-                                    </div>
+                                </div>
+                                {/* Word targets */}
+                                <div className="flex items-center justify-center gap-2 sm:gap-3">
+                                    <span className="text-lg sm:text-2xl font-black text-[#ff3d3d]">{gameState.startWord}</span>
+                                    <ChevronRight className="w-4 h-4 sm:w-6 sm:h-6 text-[#888888]" />
+                                    <span className="text-lg sm:text-2xl font-black text-green-500">{gameState.targetWord}</span>
                                 </div>
                             </div>
                         </div>
 
                         {/* Word Chain */}
-                        <div className="gamer-card p-6 min-h-[180px]">
-                            <div className="flex items-center justify-between mb-4">
-                                <h3 className="text-sm text-[#888888]">Your Chain</h3>
+                        <div className="gamer-card p-3 sm:p-6 min-h-[120px] sm:min-h-[180px]">
+                            <div className="flex items-center justify-between mb-2 sm:mb-4">
+                                <h3 className="text-xs sm:text-sm text-[#888888]">Your Chain</h3>
                                 {gameState.distanceRemaining > 0 && (
-                                    <span className="text-xs text-[#ff7b00]">{gameState.distanceRemaining} steps away</span>
+                                    <span className="text-[10px] sm:text-xs text-[#ff7b00]">{gameState.distanceRemaining} steps</span>
                                 )}
                             </div>
-                            <div className="flex flex-wrap items-center gap-3">
+                            <div className="flex flex-wrap items-center gap-1.5 sm:gap-3">
                                 {gameState.chain.map((word, index) => (
                                     <React.Fragment key={`${word}-${index}`}>
                                         <motion.button
@@ -440,7 +451,7 @@ export default function GameArenaPage() {
                                             animate={{ scale: 1 }}
                                             whileHover={{ scale: 1.05 }}
                                             onClick={() => handleAskAI(word)}
-                                            className={`px-5 py-2.5 rounded-full font-bold text-lg cursor-pointer transition-all ${index === 0
+                                            className={`px-2.5 sm:px-5 py-1.5 sm:py-2.5 rounded-full font-bold text-xs sm:text-lg cursor-pointer transition-all ${index === 0
                                                 ? 'bg-gradient-to-r from-[#ff3d3d] to-[#ff7b00] text-white'
                                                 : index === gameState.chain.length - 1
                                                     ? 'bg-[#ff7b00] text-white ring-2 ring-[#ff7b00]/50'
@@ -451,12 +462,12 @@ export default function GameArenaPage() {
                                             {word}
                                         </motion.button>
                                         {index < gameState.chain.length - 1 && (
-                                            <ChevronRight className="w-5 h-5 text-[#666666]" />
+                                            <ChevronRight className="w-3 h-3 sm:w-5 sm:h-5 text-[#666666]" />
                                         )}
                                     </React.Fragment>
                                 ))}
-                                <ChevronRight className="w-5 h-5 text-[#666666]" />
-                                <div className="px-5 py-2.5 rounded-full border-2 border-dashed border-[#3a3a3a] text-[#666666] font-bold">
+                                <ChevronRight className="w-3 h-3 sm:w-5 sm:h-5 text-[#666666]" />
+                                <div className="px-2.5 sm:px-5 py-1.5 sm:py-2.5 rounded-full border-2 border-dashed border-[#3a3a3a] text-[#666666] font-bold text-xs sm:text-base">
                                     ???
                                 </div>
                             </div>
@@ -503,36 +514,38 @@ export default function GameArenaPage() {
                         </AnimatePresence>
 
                         {/* Input Area */}
-                        <div className="gamer-card p-6">
-                            <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-4">
+                        <div className="gamer-card p-3 sm:p-6">
+                            <form onSubmit={handleSubmit} className="flex flex-col gap-2 sm:gap-4">
                                 <input
                                     type="text"
                                     value={inputWord}
                                     onChange={(e) => setInputWord(e.target.value.toUpperCase())}
                                     placeholder="Enter next word..."
                                     disabled={loading}
-                                    className="flex-1 bg-[#0a0a0a] border border-[#2a2a2a] rounded-lg px-4 py-3 text-white text-lg font-bold uppercase tracking-wider placeholder-[#666666] focus:border-[#ff7b00] focus:outline-none transition-colors"
+                                    className="w-full bg-[#0a0a0a] border border-[#2a2a2a] rounded-lg px-3 sm:px-4 py-2.5 sm:py-3 text-white text-sm sm:text-lg font-bold uppercase tracking-wider placeholder-[#666666] focus:border-[#ff7b00] focus:outline-none transition-colors"
                                     autoFocus
                                 />
-                                <button
-                                    type="submit"
-                                    disabled={loading || !inputWord.trim()}
-                                    className="gamer-btn-primary flex items-center justify-center gap-2 disabled:opacity-50"
-                                >
-                                    <Send className="w-5 h-5" />
-                                    SUBMIT
-                                </button>
-                                <button
-                                    type="button"
-                                    onClick={handleHint}
-                                    disabled={loading || gameState.hintsRemaining <= 0}
-                                    className={`px-6 py-3 bg-[#1a1a1a] border rounded-lg font-bold flex items-center justify-center gap-2 transition-colors disabled:opacity-50 ${gameState.hintsRemaining > 0
-                                        ? 'border-[#ff7b00]/30 text-[#ff7b00] hover:bg-[#ff7b00]/10'
-                                        : 'border-[#666666]/30 text-[#666666]'}`}
-                                >
-                                    <Lightbulb className="w-5 h-5" />
-                                    HINT ({gameState.hintsRemaining}/{gameState.maxHintsAllowed})
-                                </button>
+                                <div className="flex gap-2 sm:gap-4">
+                                    <button
+                                        type="submit"
+                                        disabled={loading || !inputWord.trim()}
+                                        className="flex-1 bg-gradient-to-r from-[#ff3d3d] to-[#ff7b00] text-white font-bold rounded-lg py-2.5 sm:py-3 flex items-center justify-center gap-1.5 sm:gap-2 disabled:opacity-50 text-xs sm:text-sm"
+                                    >
+                                        <Send className="w-4 h-4 sm:w-5 sm:h-5" />
+                                        SUBMIT
+                                    </button>
+                                    <button
+                                        type="button"
+                                        onClick={handleHint}
+                                        disabled={loading || gameState.hintsRemaining <= 0}
+                                        className={`flex-1 sm:flex-none px-3 sm:px-6 py-2.5 sm:py-3 bg-[#1a1a1a] border rounded-lg font-bold flex items-center justify-center gap-1.5 sm:gap-2 transition-colors disabled:opacity-50 text-xs sm:text-sm ${gameState.hintsRemaining > 0
+                                            ? 'border-[#ff7b00]/30 text-[#ff7b00] hover:bg-[#ff7b00]/10'
+                                            : 'border-[#666666]/30 text-[#666666]'}`}
+                                    >
+                                        <Lightbulb className="w-4 h-4 sm:w-5 sm:h-5" />
+                                        <span className="hidden sm:inline">HINT</span> ({gameState.hintsRemaining})
+                                    </button>
+                                </div>
                             </form>
                         </div>
 
@@ -540,7 +553,7 @@ export default function GameArenaPage() {
                         <div className="text-center">
                             <button
                                 onClick={handleForfeit}
-                                className="text-[#888888] hover:text-[#ff3d3d] transition-colors text-sm"
+                                className="text-[#888888] hover:text-[#ff3d3d] transition-colors text-xs sm:text-sm"
                             >
                                 Give up and see solution
                             </button>
@@ -608,41 +621,46 @@ export default function GameArenaPage() {
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
-                            className="fixed inset-0 bg-black/80 flex items-center justify-center p-4 z-50"
+                            className="fixed inset-0 bg-black/80 flex items-center justify-center p-2 sm:p-4 z-50"
+                            onClick={() => setShowAIModal(false)}
                         >
                             <motion.div
                                 initial={{ scale: 0.9 }}
                                 animate={{ scale: 1 }}
                                 exit={{ scale: 0.9 }}
-                                className="gamer-card p-6 max-w-md w-full relative"
+                                className="gamer-card p-4 sm:p-6 w-full max-w-md max-h-[85vh] overflow-y-auto relative"
+                                onClick={(e) => e.stopPropagation()}
                             >
-                                <button onClick={() => setShowAIModal(false)} className="absolute top-4 right-4 text-[#888888] hover:text-white">
-                                    <X className="w-6 h-6" />
+                                <button
+                                    onClick={() => setShowAIModal(false)}
+                                    className="absolute top-2 right-2 sm:top-4 sm:right-4 text-[#888888] hover:text-white p-1 bg-[#2a2a2a] rounded-full"
+                                >
+                                    <X className="w-5 h-5 sm:w-6 sm:h-6" />
                                 </button>
 
-                                <div className="flex items-center gap-3 mb-4">
-                                    <Brain className="w-6 h-6 text-[#ff7b00]" />
-                                    <h3 className="text-xl font-bold text-white">{selectedWordForAI}</h3>
+                                <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4 pr-8">
+                                    <Brain className="w-5 h-5 sm:w-6 sm:h-6 text-[#ff7b00]" />
+                                    <h3 className="text-lg sm:text-xl font-bold text-white">{selectedWordForAI}</h3>
                                 </div>
 
                                 {aiLoading ? (
-                                    <div className="py-8 text-center text-[#888888]">
-                                        <Sparkles className="w-8 h-8 mx-auto mb-2 animate-spin text-[#ff7b00]" />
-                                        Getting explanation...
+                                    <div className="py-6 sm:py-8 text-center text-[#888888]">
+                                        <Sparkles className="w-6 h-6 sm:w-8 sm:h-8 mx-auto mb-2 animate-spin text-[#ff7b00]" />
+                                        <span className="text-sm sm:text-base">Getting explanation...</span>
                                     </div>
                                 ) : aiExplanation && (
-                                    <div className="space-y-4">
+                                    <div className="space-y-3 sm:space-y-4">
                                         <div>
-                                            <p className="text-xs text-[#888888] mb-1">Definition</p>
-                                            <p className="text-white">{aiExplanation.definition}</p>
+                                            <p className="text-[10px] sm:text-xs text-[#888888] mb-1">Definition</p>
+                                            <p className="text-white text-sm sm:text-base">{aiExplanation.definition}</p>
                                         </div>
                                         {aiExplanation.pronunciation && (
-                                            <p className="text-[#888888] text-sm">{aiExplanation.pronunciation} • {aiExplanation.partOfSpeech}</p>
+                                            <p className="text-[#888888] text-xs sm:text-sm">{aiExplanation.pronunciation} • {aiExplanation.partOfSpeech}</p>
                                         )}
                                         {aiExplanation.examples.length > 0 && (
                                             <div>
-                                                <p className="text-xs text-[#888888] mb-1">Examples</p>
-                                                <ul className="text-sm text-white space-y-1">
+                                                <p className="text-[10px] sm:text-xs text-[#888888] mb-1">Examples</p>
+                                                <ul className="text-xs sm:text-sm text-white space-y-1">
                                                     {aiExplanation.examples.map((ex, i) => (
                                                         <li key={i} className="text-[#cccccc]">• {ex}</li>
                                                     ))}
@@ -650,13 +668,21 @@ export default function GameArenaPage() {
                                             </div>
                                         )}
                                         {aiExplanation.funFact && (
-                                            <div className="bg-[#ff7b00]/10 p-3 rounded-lg">
-                                                <p className="text-xs text-[#ff7b00] mb-1">💡 Fun Fact</p>
-                                                <p className="text-sm text-white">{aiExplanation.funFact}</p>
+                                            <div className="bg-[#ff7b00]/10 p-2 sm:p-3 rounded-lg">
+                                                <p className="text-[10px] sm:text-xs text-[#ff7b00] mb-1">💡 Fun Fact</p>
+                                                <p className="text-xs sm:text-sm text-white">{aiExplanation.funFact}</p>
                                             </div>
                                         )}
                                     </div>
                                 )}
+
+                                {/* Close button at bottom for mobile */}
+                                <button
+                                    onClick={() => setShowAIModal(false)}
+                                    className="w-full mt-4 py-2.5 bg-[#2a2a2a] text-white rounded-lg font-medium text-sm hover:bg-[#3a3a3a] sm:hidden"
+                                >
+                                    Close
+                                </button>
                             </motion.div>
                         </motion.div>
                     )}
@@ -710,6 +736,20 @@ export default function GameArenaPage() {
                     )}
                 </AnimatePresence>
             </div>
+
+            {/* Persistent How to Play Button */}
+            <Link href="/how-to-play">
+                <motion.button
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                    className="fixed bottom-4 right-4 sm:bottom-8 sm:right-8 z-50 w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-gradient-to-br from-[#ff3d3d] to-[#ff7b00] flex items-center justify-center shadow-lg shadow-orange-500/30 border-2 border-white/20"
+                    title="How to Play"
+                >
+                    <BookOpen className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
+                </motion.button>
+            </Link>
         </div>
     );
 }
