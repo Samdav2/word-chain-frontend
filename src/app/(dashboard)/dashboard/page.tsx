@@ -125,7 +125,7 @@ export default function DashboardPage() {
                                 <div className="min-w-0 flex-1">
                                     <h1 className="text-base sm:text-xl md:text-2xl lg:text-3xl font-black text-white leading-tight">
                                         <span className="hidden sm:inline">Welcome back, </span>
-                                        <span className="text-white sm:glow-text-orange truncate block sm:inline">
+                                        <span className="text-white sm:text-[#ff7b00] sm:glow-text-orange truncate block sm:inline">
                                             {user?.first_name || user?.display_name || 'Player'}
                                         </span>
                                         <span className="hidden sm:inline">!</span>
