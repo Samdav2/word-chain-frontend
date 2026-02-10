@@ -91,7 +91,7 @@ export default function AboutPage() {
                         <span className="text-[#3a3a3a]">•</span>
                         <div className="flex items-center gap-2">
                             <Code className="w-4 h-4 text-[#ff7b00]" />
-                            <span>FUTA 2024/2025</span>
+                            <span>LASU 2024/2025</span>
                         </div>
                     </div>
                 </div>
