@@ -1,6 +1,8 @@
 
+// 1. Configuration
 const MODEL_ID = 'gemini-3-flash-preview';
 const GEMINI_API_KEY = process.env.NEXT_PUBLIC_GEMINI_API_KEY || '';
+// Using v1beta to access the newest thinking_config features
 const GEMINI_API_URL = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL_ID}:generateContent`;
 
 export interface WordExplanation {
@@ -13,16 +15,24 @@ export interface WordExplanation {
     funFact?: string;
 }
 
-
 export async function explainWord(word: string): Promise<WordExplanation> {
+    // Fallback if API key is missing
     if (!GEMINI_API_KEY) {
         console.warn('Gemini API key not configured. Using mock data.');
         return getMockExplanation(word);
     }
 
     try {
-        const prompt = `Provide a detailed explanation for the word "${word}".
-        Include: definition, pronunciation, partOfSpeech, examples (array), etymology, and funFact.`;
+        const prompt = `
+            Act as an expert educator. Provide a detailed, clear explanation for the word: "${word}".
+            Return the response strictly as a JSON object with these keys:
+            - definition: A clear, educational definition.
+            - pronunciation: Phonetic pronunciation (e.g., /ˌedʒ.uˈkeɪ.ʃən/).
+            - partOfSpeech: noun, verb, adjective, etc.
+            - examples: An array of 2-3 engaging example sentences.
+            - etymology: The origin story of the word.
+            - funFact: A surprising fact to help students remember it.
+        `;
 
         const response = await fetch(`${GEMINI_API_URL}?key=${GEMINI_API_KEY}`, {
             method: 'POST',
@@ -30,25 +40,34 @@ export async function explainWord(word: string): Promise<WordExplanation> {
             body: JSON.stringify({
                 contents: [{ parts: [{ text: prompt }] }],
                 generationConfig: {
-                    temperature: 0.3,
-                    maxOutputTokens: 500,
-                    // Native JSON enforcement (No more Regex needed!)
-                    response_mime_type: "application/json"
+                    temperature: 0.2, // Low temperature for consistent JSON
+                    maxOutputTokens: 1500, // Plenty of room for the answer
+                    response_mime_type: "application/json",
                 },
+                // THE "THINK LESS" FIX:
+                // Prevents the model from outputting reasoning, reducing latency.
+                thinking_config: {
+                    include_thoughts: false
+                }
             }),
         });
 
         if (!response.ok) {
-            throw new Error(`Gemini API error: ${response.status}`);
+            const errorData = await response.json();
+            console.error('Gemini API Error:', errorData);
+            throw new Error(`HTTP ${response.status}`);
         }
 
         const data = await response.json();
-        const text = data.candidates?.[0]?.content?.parts?.[0]?.text || '';
+        const text = data.candidates?.[0]?.content?.parts?.[0]?.text;
+
+        if (!text) throw new Error("Empty response from Gemini");
+
         const parsed = JSON.parse(text);
 
         return {
             word: word.toUpperCase(),
-            definition: parsed.definition || 'Definition not available',
+            definition: parsed.definition || 'No definition found.',
             pronunciation: parsed.pronunciation,
             partOfSpeech: parsed.partOfSpeech || 'unknown',
             examples: parsed.examples || [],
@@ -57,17 +76,23 @@ export async function explainWord(word: string): Promise<WordExplanation> {
         };
 
     } catch (error) {
-        console.error('AI explanation error:', error);
+        console.error('AI Request failed:', error);
+        // Return mock data so the app doesn't crash for the student
         return getMockExplanation(word);
     }
 }
 
-/**
- * Mock data remains the same for offline fallback
- */
+
 function getMockExplanation(word: string): WordExplanation {
-    // ... (Keep your existing mock logic here)
-    return { word: word.toUpperCase(), definition: 'Mock data...', partOfSpeech: 'noun', examples: [] };
+    return {
+        word: word.toUpperCase(),
+        definition: `Educational content for "${word}" is currently being prepared.`,
+        pronunciation: `/${word.toLowerCase()}/`,
+        partOfSpeech: 'noun',
+        examples: [`Learning about "${word}" helps build your vocabulary!`],
+        etymology: 'Vocabulary building module',
+        funFact: 'Did you know that learning new words improves brain plasticity?'
+    };
 }
 
 export default { explainWord };
