@@ -44,11 +44,6 @@ export async function explainWord(word: string): Promise<WordExplanation> {
                     maxOutputTokens: 1500, // Plenty of room for the answer
                     response_mime_type: "application/json",
                 },
-                // Minimize thinking for fast, low-latency JSON responses.
-                // Gemini 3 uses thinking_level instead of thinkingBudget.
-                thinking_config: {
-                    thinking_level: "minimal"
-                }
             }),
         });
 
