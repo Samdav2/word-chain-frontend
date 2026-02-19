@@ -2,7 +2,7 @@
 // 1. Configuration
 const MODEL_ID = 'gemini-3-flash-preview';
 const GEMINI_API_KEY = process.env.NEXT_PUBLIC_GEMINI_API_KEY || '';
-// Using v1beta to access the newest thinking_config features
+// Using v1beta to access thinking_config and JSON response features
 const GEMINI_API_URL = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL_ID}:generateContent`;
 
 export interface WordExplanation {
@@ -44,10 +44,10 @@ export async function explainWord(word: string): Promise<WordExplanation> {
                     maxOutputTokens: 1500, // Plenty of room for the answer
                     response_mime_type: "application/json",
                 },
-                // THE "THINK LESS" FIX:
-                // Prevents the model from outputting reasoning, reducing latency.
+                // Minimize thinking for fast, low-latency JSON responses.
+                // Gemini 3 uses thinking_level instead of thinkingBudget.
                 thinking_config: {
-                    include_thoughts: false
+                    thinking_level: "minimal"
                 }
             }),
         });
